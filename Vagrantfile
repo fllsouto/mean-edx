@@ -7,6 +7,8 @@ VBOX__NAME = "mean-edx-vm"
 MAX_CPU = "75"
 MAX_MEMORY = 4096
 
+SETUP_FILE = "vagrant-machine-setup.sh"
+
 ##
 
 # -*- mode: ruby -*-
@@ -59,6 +61,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
+  config.vm.provision :shell, :privileged => false, :path => SETUP_FILE
   config.vm.synced_folder "src/", "/home/vagrant/src", create: true
 
   # Provider-specific configuration so you can fine-tune various
