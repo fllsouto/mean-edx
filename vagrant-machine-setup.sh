@@ -11,6 +11,7 @@ sudo apt-get update
 sudo su
 echo 'LC_ALL="en_US.UTF-8"'  >  /etc/default/locale
 exit
+sudo apt-get -y install g++
 
 ###############################################
 # Install Git

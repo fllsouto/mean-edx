@@ -1020,4 +1020,20 @@ O mongo guarda os documentos em coleções diferentes, caso eu esteja no console
 <p><pre><code>db.test.inser({hello: &quot;world&quot;}) 
 </code></pre><br />
 irá inserir um novo document na collection <strong>test</strong>. Esse <strong>document</strong> é especificado como um <em>JSON</em>.  </p>
-<p>O arquivo <strong>package.json</strong> descreve os metadados dos apps e dos packages usados.</p></article></body></html>
+<p>O arquivo <strong>package.json</strong> descreve os metadados dos apps e dos packages usados.</p>
+<hr />
+<h2 id="modelo-de-concorrencia"><a name="user-content-modelo-de-concorrencia" href="#modelo-de-concorrencia" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Modelo de Concorrencia</h2>
+<p>O modelo de concorrencia do javascript é orientado a eventos, pode ser descrito como algo assim : </p>
+<pre><code>while(waitForEvents()) {
+  processEvents();
+}
+</code></pre>
+
+<p>Existe uma fila de eventos para serem executados, caso um operação esteja <strong>bloqueada</strong> esperando o termino de I/O existirá um evento de <strong>callback</strong> dessa operação, quando a operação terminal o <strong>callback</strong> é colocado nessa fila e é processado. Isso quebra de forma eficiente processos blocantes. Por fim esse loop acima é single thread.  </p>
+<p>O código que é executado na iteração corrente é considerado sincrono, pois bloqueia o loop de eventos. Os que não bloqueiam são considerados assincronos. Comumente operações de IO e rede são assincronos.</p>
+<hr />
+<h2 id="acessando-arquivos-e-o-require"><a name="user-content-acessando-arquivos-e-o-require" href="#acessando-arquivos-e-o-require" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Acessando arquivos e o require</h2>
+<p>O método require é a forma correta de compartilhar código entre diferentes arquivos. Além disso o path até o arquivo toma como refência o atual. Quando o require acontece sobre um dirétório o node irá procurar o primeiro index.js, exemplo : </p>
+<pre><code>require('./test') //onde teste é uma pasta equivale a require('./test/index.js')
+
+</code></pre></article></body></html>
