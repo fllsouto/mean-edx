@@ -36,6 +36,7 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--cpuexecutioncap", MAX_CPU]
     #Max ram memory that vbox can use
     v.memory = MAX_MEMORY
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
   end
 
   # Disable automatic box update checking. If you disable this, then
@@ -62,7 +63,7 @@ Vagrant.configure(2) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.provision :shell, :privileged => false, :path => SETUP_FILE
-  config.vm.synced_folder "src/", "/home/vagrant/src", create: true
+  config.vm.synced_folder ".", "/home/vagrant/mean-edx", create: true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

@@ -33,3 +33,6 @@ O método require é a forma correta de compartilhar código entre diferentes ar
 require('./test') //onde teste é uma pasta equivale a require('./test/index.js')
 
 ```
+
+## Testando com o Mocha
+O framework Mocha é útil para fazer testes de unidade em códigos assincronos client side e nodejs. A ajuda do mocha através do commando ```mocha -h``` 

@@ -12,7 +12,7 @@ sudo su
 echo 'LC_ALL="en_US.UTF-8"'  >  /etc/default/locale
 exit
 sudo apt-get -y install g++
-
+sudo apt-get install libkrb5-dev
 ###############################################
 # Install Git
 ###############################################
